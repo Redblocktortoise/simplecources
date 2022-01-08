@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block nav %}
+{% include 'inc/-navateacher.html' %}
+{% endblock %}
+
+{% block content %}
+    <h1>Изменить урок:</h1>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ user_form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}

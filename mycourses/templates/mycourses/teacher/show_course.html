@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block nav %}
+{% include 'inc/-navateacher.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="card mb-3">
+    <div class="card-header">
+        Категория: <a href="{{ course_item.get_absolute_url }}">{{ news_item.category }}</a>
+    </div>
+    <div class="card-body">
+        {% if item.photo %}
+        <img src="{{ news_item.photo.url }}" alt="" width="350" class="float-left mr-3">
+        {% else %}
+        <img src="https://picsum.photos/id/1060/350/235/?blur=2" alt="" class="float-left mr-3">
+        {% endif %}
+
+        <h5 class="card-title">{{ item.name }}</h5>
+        {
+        <h5 class="card-title">ШТО ТАКОЕ??? </h5>
+        <p class="card-text">{{ news_item.content|safe|linebreaks }}</p>
+    </div>
+    <div class="card-footer text-muted">
+        {{ news_item.created_at|date:"Y-m-d H:i:s" }}
+    </div>
+</div>
+
+<div class="container mt-3">
+    <div class="row">
+
+        <div class="col-md-3">
+           {% block students %}
+            {% for student in students %}
+            <h5 class="card-title">{{ student.user.first_name }}</h5>
+             <a href="{% url 'show_student' course_item.id student.pk %}" class="btn btn-primary">Read more...</a>
+            {% endfor %}
+            {% endblock %}
+            <a href="{% url 'create_student' course_item.id %}" class="btn btn-primary">Добавить студента</a>
+        </div>
+
+        <div class="col-md-3">
+            {% block lessons %}
+            {% for lesson in lessons %}
+            <h5 class="card-title">{{ lesson.name }}</h5>
+
+             <a href="{% url 'show_lesson' course_item.id lesson.pk %}" class="btn btn-primary">Read more...</a>
+            {% endfor %}
+            {% endblock %}
+            <a href="{% url 'create_lesson' course_item.id %}" class="btn btn-primary">Добавить урок</a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

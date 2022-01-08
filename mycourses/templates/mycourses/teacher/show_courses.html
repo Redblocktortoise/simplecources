@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block nav %}
+{% include 'inc/-navateacher.html' %}
+{% endblock %}
+
+{% block content %}
+
+{% for item in courses %}
+
+<div class="card mb-3">
+    <div class="card-header">
+        Категория: <a href="{{ item.courses.get_absolute_url }}">{{ item.category}}</a>
+    </div>
+    <div class="card-body">
+        <div class="media">
+
+            <img src="" alt="" width="350" class="mr-3">
+
+            <img src="https://picsum.photos/id/1060/350/235/?blur=2" alt="" class="mr-3">
+
+            <div class="media-body">
+                <h5 class="card-title">{{ item.name }}</h5>
+                <p class="card-text">{{ item.name|safe|linebreaks|truncatewords:50 }}</p>
+               <a href="{{ item.id }}" class="btn btn-primary">Read more...</a>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-footer text-muted">
+        {{ item.name|date:"Y-m-d H:i:s" }}
+    </div>
+</div>
+{% endfor %}
+
+{% endblock content %}

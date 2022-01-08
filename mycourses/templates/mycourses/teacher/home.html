@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block nav %}
+{% include 'inc/-navateacher.html' %}
+{% endblock %}
+{% block sidebar %}
+
+           {% if item.photo %}
+        <img src="{{ news_item.photo.url }}" alt="" width="150" class="float-left mr-3">
+        {% else %}
+        <img src="https://picsum.photos/id/1060/350/235/?blur=2" alt=""  width="250" class="float-left mr-1">
+        {% endif %}
+
+{% endblock  %}
+{% block content %}
+
+        <div class="col-md-9">
+         <ul class="company-numbers about-company__numbers" data-v-ef6f4844>
+             <li class="company-numbers__item">Фамилия:<b class="company-numbers__title">{{user.username}} </b></li>
+             <li class="company-numbers__item">Имя:<b class="company-numbers__title"> {{user.first_name}}</b></li>
+             <li class="company-numbers__item">Отчество:<b class="company-numbers__title"> </b></li>
+             <li class="company-numbers__item">О себе:<b class="company-numbers__title"> {{user.password}}</b></li>
+            <li class="company-numbers__item">Почта: <b class="company-numbers__title"> {{user.email}}</b></li>
+             <li class="company-numbers__item">Навыки:<b class="company-numbers__title"> </b></li>
+         </ul>
+        <a href="{% url 'update' %}" class="btn btn-primary">Редактировать</a>
+        </div>
+
+
+
+{% endblock  %}

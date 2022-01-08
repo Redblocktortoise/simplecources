@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block nav %}
+{% include 'inc/-navateacher.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="card mb-3">
+    <div class="card-header">
+
+    </div>
+    <div class="card-body">
+        {% if item.photo %}
+        <img src="{{ news_item.photo.url }}" alt="" width="350" class="float-left mr-3">
+        {% else %}
+        <img src="https://picsum.photos/id/1060/350/235/?blur=2" alt="" class="float-left mr-3">
+        {% endif %}
+
+        <h5 class="card-title">{{ student_item.last_name }}</h5>
+<!--        <p class="card-text">{{ news_item.content|safe|linebreaks }}</p>-->
+    </div>
+    <div class="card-footer text-muted">
+   <a href="{% url 'update_student' course_id student_id %}" class="btn btn-primary">Редактировать</a>
+    </div>
+
+</div>
+
+
+{% endblock %}
